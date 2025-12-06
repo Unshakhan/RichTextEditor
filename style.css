@@ -1,0 +1,32 @@
+body{
+    height: 100vh;
+}
+.container{
+    background-color: aqua;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    margin-top: 200px;
+}
+.first-div{
+    width: 100%;
+    background-color: aliceblue;
+   
+}
+.icons{
+ display: flex;
+    justify-content: space-between;
+   
+}
+.icons i{
+    margin: 6px;
+}
+.content{
+ width: 200px;
+ height: 200px;
+ background-color: pink;
+margin: auto;
+padding: 10px;
+}
