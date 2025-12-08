@@ -83,8 +83,42 @@ function indentright(){
 function bqoute() {
     var editor = document.getElementById("text");
     editor.focus();
-    document.execCommand("blockquote");
+    // document.execCommand("blockquote");
+      editor.classList.toggle("quote");
+}
+// ===============================
+var emojis = document.getElementsByClassName("emoji");
+
+for (var i = 0; i < emojis.length; i++) {
+    emojis[i].onclick = function () {
+        var editor = document.getElementById("text");
+        editor.focus();
+
+        document.execCommand("insertText", false, this.innerText);
+    }
+}
+function heading(tag){
+ var editor = document.getElementById("text");
+    editor.focus();
+    document.execCommand("formatBlock", false, tag);
+}
+let copiedText = ""; // global variable to store copied text
+
+function copy() {
+    copiedText = document.getElementById("text").innerText; // store text globally
+    Swal.fire({
+        icon: "success",
+        title: "Copied successfully"
+    });
+    console.log(copiedText);
 }
 
+function paste() {
+    var textDiv = document.getElementById("text");
+    textDiv.innerText = copiedText; // use the global variable
+}
+function deleteAll() {
+    document.getElementById("text").innerText = ""; // clears everything
+}
 
 
