@@ -121,4 +121,46 @@ function deleteAll() {
     document.getElementById("text").innerText = ""; // clears everything
 }
 
+// function search(){
+//    var editor = document.getElementById("text");
+//    var search= document.getElementById("search").value;
+//    let words = search.split(",");
+//    console.log(words);
+   
+// }
+// search()
+function search() {
+  let editor = document.getElementById("text");
+  let original = editor.innerText; //editor k undr ka text
+editor.innerHTML = original
+  let searchInput = document.getElementById("search").value;
 
+  // split into words (comma se)
+  let words = searchInput.split(",");
+
+  // highlight logic
+  let result = original;
+
+  words.forEach(word => {
+    word = word.trim(); // space remove
+  if(word !== ""){
+  if(result.includes(word)){
+    let highlighted = "<span class='highlight'>" + word + "</span>";
+        result = result.replaceAll(word, highlighted);
+  }else {
+        console.log(word + " not found");
+      }
+  }
+  })
+
+  editor.innerHTML = result;
+}
+function update(){
+  var linkUrl = document.getElementById("linkUrl").value
+  // var linktext = document.getElementById("linktext")
+  // linktext.innerText = linkUrl
+  localStorage.setItem("link",linkUrl)
+  var textlink = localStorage.getItem("link")
+  let editor = document.getElementById("text");
+  editor.innerHTML += `<a href="">${textlink}</a>`
+}
