@@ -115,10 +115,33 @@ function copy() {
 
 function paste() {
     var textDiv = document.getElementById("text");
-    textDiv.innerText = copiedText; // use the global variable
+    textDiv.innerText += " "+copiedText; // use the global variable
+}
+// function deleteAll() {
+//     document.getElementById("text").innerText = ""; // clears everything
+// }
+let savedRange = null; //means nothing saved yet
+
+document.getElementById("text").addEventListener("mouseup", saveSelection);//selection with mouse
+document.getElementById("text").addEventListener("keyup", saveSelection); //selection with key
+
+function saveSelection() {
+    let sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+      console.log(sel);
+      
+        savedRange = sel.getRangeAt(0);
+        // console.log(savedRange);
+        
+    }
 }
 function deleteAll() {
-    document.getElementById("text").innerText = ""; // clears everything
+    if (savedRange) {
+        let sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(savedRange); // restore selection
+        document.execCommand("delete"); // delete only selected part
+    }
 }
 
 // function search(){
